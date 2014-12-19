@@ -1,5 +1,6 @@
 package fr.seyara.ces.tools;
 
+
 /**
  * Multiple usage list which allow elements to stay close or mapped list.
  * @author Spoke
@@ -14,7 +15,7 @@ public class CustomList<T> implements IPsychoList<T> {
 	 * Default construct which create a new array with defined size
 	 */
 	public CustomList(){
-		this(92);
+		this(64);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -42,6 +43,12 @@ public class CustomList<T> implements IPsychoList<T> {
 			}
 		}
 		return false;
+	}
+	
+	public boolean removeAt(int i){
+		items[i] = items[--size];
+		items[size] = null;				
+		return true;
 	}
 	
 	// use of mapped list
