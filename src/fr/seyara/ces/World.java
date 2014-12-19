@@ -2,14 +2,6 @@ package fr.seyara.ces;
 
 import java.util.HashMap;
 
-import com.psychopath.ces.ComponentManager;
-import com.psychopath.ces.Entity;
-import com.psychopath.ces.EntityManager;
-import com.psychopath.ces.EntitySystem;
-import com.psychopath.ces.IListener;
-import com.psychopath.ces.Manager;
-import com.psychopath.ces.World.Notifier;
-
 import fr.seyara.ces.tools.CustomList;
 
 public class World {
