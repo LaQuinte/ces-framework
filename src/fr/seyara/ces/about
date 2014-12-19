@@ -1,0 +1,12 @@
+@author 	Spoke
+@date		17-12-2014
+@subject 	CES Framework informations
+
+@content
+
+The CES framework is mostly inspired by the Artemis Project (Component-Entity-System Framework) coded in Java.
+I rewrite this framework from scratch to have a better understood of it.
+
+
+
+@source		http://gamadu.com/artemis/download.html
