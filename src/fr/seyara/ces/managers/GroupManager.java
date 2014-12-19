@@ -1,6 +1,7 @@
 package fr.seyara.ces.managers;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import fr.seyara.ces.Entity;
 import fr.seyara.ces.Manager;
@@ -23,6 +24,9 @@ public class GroupManager extends Manager {
 		entitiesByGroup = new HashMap<String, CustomList<Entity>>();
 		groupsByEntity = new HashMap<Entity, CustomList<String>>();
 	}
+
+	@Override
+	protected void init() { }
 	
 	/**
 	 * Add an empty group if it doesn't exist.
@@ -55,7 +59,6 @@ public class GroupManager extends Manager {
 	public void addEntity(String g, Entity e){
 		addGroup(g).add(e);
 		addGroupNameToExistentEntity(g, e);
-		
 	}
 	
 	/**
@@ -74,11 +77,18 @@ public class GroupManager extends Manager {
 	}
 	
 	/**
-	 * Remove an Entity from all groups
+	 * Remove an Entity from all groups.
+	 * This method is SLOW and must be avoid as possible !
 	 * @param e
 	 */
 	public void removeEntity(Entity e){
+		CustomList<String> groups = groupsByEntity.get(e);
+		for(int i = 0; i < groups.size(); i++){
+			CustomList<Entity> list = entitiesByGroup.get(groups.get(i));
+			list.remove(e);
+		}
 		
+		groupsByEntity.put(e, null);
 	}
 	
 	/**
@@ -87,23 +97,25 @@ public class GroupManager extends Manager {
 	 * @param e
 	 */
 	public void removeEntityFromGroup(String g, Entity e){
+		CustomList<Entity> entities = entitiesByGroup.get(g);
+		CustomList<String> groups = groupsByEntity.get(e);
 		
+		if(entities != null)
+			entities.remove(e);
+		if(groups != null)
+			groups.remove(g);
 	}
 	
 	/**
-	 * Remove a group and this Entities. This method is SLOW and must be avoid as possible !
+	 * Remove a group and this Entities.
+	 * This method is SLOW and must be avoid as possible !
 	 * @param g Name of the group
 	 */
 	public void removeGroup(String g){
 		CustomList<Entity> list = entitiesByGroup.get(g);
 		for(int i = 0; i < list.size(); i++){
 			CustomList<String> groups = groupsByEntity.get(list.get(i));
-			for(int j = 0; j < groups.size(); j++){
-				if(groups.get(j).equals(g)){
-					groups.removeAt(j);
-					break;
-				}
-			}
+			groups.remove(g);
 		}
 		
 		entitiesByGroup.put(g, null);
@@ -124,6 +136,15 @@ public class GroupManager extends Manager {
 	}
 	
 	/**
+	 * Return the list of groups that an Entity belong to
+	 * @param e
+	 * @return
+	 */
+	public CustomList<String> getGroups(Entity e){
+		return groupsByEntity.get(e);
+	}
+	
+	/**
 	 * Check if an Entity belong to a group name
 	 * @param g Name of the group
 	 * @param e
@@ -138,8 +159,20 @@ public class GroupManager extends Manager {
 		return false;
 	}
 	
-	@Override
-	protected void init() {
+	/**
+	 * Check if an Entity belong to any group
+	 * @param e
+	 * @return
+	 */
+	public boolean hasAGroup(Entity e){
+		return getGroups(e) != null;
 	}
-
+	
+	/**
+	 * Return a Set of all groups names
+	 * @return
+	 */
+	public Set getAllGroups(){
+		return entitiesByGroup.keySet();
+	}
 }
