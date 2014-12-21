@@ -68,18 +68,22 @@ abstract public class EntitySystem implements IListener {
 		
 		if(allTypes.size() > 0){ // case : many include types
 			for(int i = 0; i < allTypes.size(); i++){
-				if(!cm.contains(e, allTypes.get(i)))
+				if(!cm.contains(e, allTypes.get(i))){
+					entities.remove(e);
 					return;
+				}
 			}
 		}
 		
 		if(!cm.contains(e, lastType)) 
-			return;
+			entities.remove(e);
 		
 		if(excludeTypes.size() > 0){
 			for(int i = 0; i < excludeTypes.size(); i++){
-				if(cm.contains(e, excludeTypes.get(i)))
+				if(cm.contains(e, excludeTypes.get(i))){
+					entities.remove(e);
 					return;
+				}
 			}
 		}
 		

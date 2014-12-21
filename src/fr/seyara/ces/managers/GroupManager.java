@@ -121,6 +121,12 @@ public class GroupManager extends Manager {
 		entitiesByGroup.put(g, null);
 	}
 	
+	
+	@Override
+	public void removed(Entity e){
+		removeEntity(e);
+	}
+	
 	/**
 	 * Return a CustomList which contains all entities. This method never return NULL but an empty list.
 	 * @param g Name of the group

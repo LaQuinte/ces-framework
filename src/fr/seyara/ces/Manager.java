@@ -1,5 +1,10 @@
 package fr.seyara.ces;
 
+/**
+ * Base class representing a Manager. Be careful when you extend this, don't forget the removed() Override if you deal with entities.
+ * @author Spoke
+ *
+ */
 public abstract class Manager implements IListener {
 	protected World world;
 	

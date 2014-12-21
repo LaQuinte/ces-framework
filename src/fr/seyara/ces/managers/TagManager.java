@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import fr.seyara.ces.Entity;
 import fr.seyara.ces.Manager;
+import fr.seyara.ces.tools.CustomList;
 
 /**
  * This manager allow you to store an Entity under a tag name to get it fast. 
@@ -70,6 +71,11 @@ public class TagManager extends Manager {
 		return tagsByEntity.get(e);
 	}
 	
+	
+	@Override
+	public void removed(Entity e){
+		remove(e);
+	}
 	
 	
 	@Override
