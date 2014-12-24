@@ -15,7 +15,8 @@ public class TeamManager extends Manager {
 	private HashMap<String, CustomList<String>> playersByTeam;
 	
 	public TeamManager(){
-		
+		teamByPlayer = new HashMap<String, String>();
+		playersByTeam = new HashMap<String, CustomList<String>>();
 	}
 	
 	/**
