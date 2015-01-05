@@ -3,8 +3,8 @@ package fr.seyara.ces;
 import fr.seyara.ces.tools.CustomList;
 
 /**
- * Load the full bag of components and put it in memory for a fast access to this Component from entities
- * Useful when you have to pull of the same component from many entities
+ * Load the components and put them in memory for a fast access from  entities
+ * Useful when you have to get the same component from many entities
  * @author Spoke
  *
  * @param <M>
