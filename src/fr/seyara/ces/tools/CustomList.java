@@ -7,7 +7,7 @@ package fr.seyara.ces.tools;
  *
  * @param <T>
  */
-public class CustomList<T> implements IPsychoList<T> {
+public class CustomList<T> implements ICustomList<T> {
 	private int size = 0;
 	private T[] items;
 

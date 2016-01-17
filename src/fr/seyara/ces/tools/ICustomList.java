@@ -1,6 +1,6 @@
 package fr.seyara.ces.tools;
 
-public interface IPsychoList<T> {
+public interface ICustomList<T> {
 	public int size();
 	public T get(int index);
 	public void set(T elem, int i);
